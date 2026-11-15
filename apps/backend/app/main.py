@@ -28,10 +28,10 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS – include the Vercel web-service URL when injected via binding
+# CORS – include allowed origins and any injected frontend URL
 origins = [origin.strip() for origin in settings.ALLOWED_ORIGINS.split(",") if origin.strip()]
-if settings.WEB_URL and settings.WEB_URL not in origins:
-    origins.append(settings.WEB_URL)
+if getattr(settings, "web_url", None) and settings.web_url not in origins:
+    origins.append(settings.web_url)
 if not origins:
     origins = ["*"]
 
@@ -43,16 +43,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register Routers
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
-app.include_router(savings.router, prefix="/savings", tags=["Savings & Budgeting"])
-app.include_router(marketplace.router, prefix="/marketplace", tags=["Affordable Marketplace"])
-app.include_router(ai.router, prefix="/ai", tags=["Gemini AI Assistant"])
-app.include_router(youth.router, prefix="/youth", tags=["Youth Development"])
-app.include_router(partners.router, prefix="/partners", tags=["Business Partners"])
-app.include_router(admin.router, prefix="/admin", tags=["Admin & Moderation"])
+# Register Routers: mount both under root and under /api for seamless public/internal routing
+router_registry = [
+    (auth.router, "/auth", ["Authentication"]),
+    (savings.router, "/savings", ["Savings & Budgeting"]),
+    (marketplace.router, "/marketplace", ["Affordable Marketplace"]),
+    (ai.router, "/ai", ["Gemini AI Assistant"]),
+    (youth.router, "/youth", ["Youth Development"]),
+    (partners.router, "/partners", ["Business Partners"]),
+    (admin.router, "/admin", ["Admin & Moderation"]),
+]
+
+for router_module, prefix, tags in router_registry:
+    # Direct route (e.g. /ai/chat for internal service calls via binding)
+    app.include_router(router_module, prefix=prefix, tags=tags)
+    # Prefixed route (e.g. /api/ai/chat if routed via public /api rewrite)
+    app.include_router(router_module, prefix=f"/api{prefix}", tags=tags)
 
 @app.get("/health", tags=["Health"])
+@app.get("/api/health", tags=["Health"])
 async def health_check():
     return {
         "status": "healthy",

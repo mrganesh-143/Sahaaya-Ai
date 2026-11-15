@@ -6,17 +6,46 @@ export async function POST(req: NextRequest) {
   try {
     const { messages, language = 'en' } = await req.json();
 
+    // 1. Call backend service via internal binding URL if available (runtime function)
+    const backendUrl = process.env.BACKEND_URL;
+    if (backendUrl) {
+      try {
+        const backendEndpoint = new URL('/ai/chat', backendUrl);
+        const backendRes = await fetch(backendEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: messages.map((m: any) => ({
+              role: m.role === 'assistant' || m.role === 'model' ? 'model' : 'user',
+              content: m.content
+            })),
+            language
+          })
+        });
+
+        if (backendRes.ok) {
+          const backendData = await backendRes.json();
+          return NextResponse.json({
+            message: backendData.message,
+            language: backendData.language || language,
+            session_id: backendData.session_id
+          });
+        }
+      } catch (err) {
+        console.warn('Backend service call via BACKEND_URL failed, falling back to direct handler:', err);
+      }
+    }
+
+    // 2. Direct Gemini fallback
     const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
-      // Fallback response if GEMINI_API_KEY is not configured
       return NextResponse.json({
         message: "Namaste! I am Sahaaya AI. To enable live conversational intelligence with Google Gemini 1.5 Pro, please configure your GEMINI_API_KEY in .env.local. In the meantime: you can save an estimated ₹400-600 every month by buying unpolished pulses in 5kg community bulk packs directly through our marketplace!",
         language
       });
     }
 
-    // Call Google Gemini REST endpoint
     const systemPrompt = `You are Sahaaya AI, a compassionate financial and lifestyle advisor for Indian families. Founder & CEO of SAHAAYA is Gunda Sai Jayanth.
 Tagline: Save More. Live Better. Grow Together.
 Languages: English, Telugu, Hindi. Current language is: ${language}.
