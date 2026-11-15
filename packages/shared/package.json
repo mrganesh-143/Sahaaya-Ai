@@ -1,0 +1,15 @@
+{
+  "name": "@sahaaya/shared",
+  "version": "1.0.0",
+  "description": "Shared TypeScript types and utilities for SAHAAYA monorepo",
+  "main": "index.ts",
+  "types": "index.ts",
+  "private": true,
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sahaaya-backend"
+version = "1.0.0"
+description = "SAHAAYA – People's Savings Network Backend API"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Gunda Sai Jayanth", email = "founder@sahaaya.in" }
+]
+license = { text = "MIT" }
+keywords = ["savings", "india", "fastapi", "fintech"]
+
+dependencies = [
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.29.0",
+    "supabase>=2.4.0",
+    "python-dotenv>=1.0.1",
+    "pydantic[email]>=2.7.0",
+    "pydantic-settings>=2.2.1",
+    "google-generativeai>=0.7.0",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.9",
+    "httpx>=0.27.0",
+    "tenacity>=8.3.0",
+    "slowapi>=0.1.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.27.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

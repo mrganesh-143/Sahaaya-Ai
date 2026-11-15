@@ -1,0 +1,39 @@
+{
+  "name": "sahaaya",
+  "version": "1.0.0",
+  "description": "SAHAAYA – People's Savings Network. Save More. Live Better. Grow Together.",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @sahaaya/web dev",
+    "dev:backend": "pnpm --filter @sahaaya/backend dev",
+    "dev:mobile": "pnpm --filter @sahaaya/mobile dev",
+    "build:web": "pnpm --filter @sahaaya/web build",
+    "build:backend": "pnpm --filter @sahaaya/backend build",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "@types/node": "^20.12.0"
+  },
+  "turbo": {
+    "extends": [
+      "//"
+    ]
+  }
+}
