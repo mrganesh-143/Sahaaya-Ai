@@ -1,0 +1,8 @@
+# Vercel ignore file – keep builds lean
+mingit/
+mingit.zip
+cloudflared.exe
+*.log
+*.ps1
+public_deploy/
+apps/mobile/

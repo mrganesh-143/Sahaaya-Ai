@@ -28,8 +28,10 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS
+# CORS – include the Vercel web-service URL when injected via binding
 origins = [origin.strip() for origin in settings.ALLOWED_ORIGINS.split(",") if origin.strip()]
+if settings.WEB_URL and settings.WEB_URL not in origins:
+    origins.append(settings.WEB_URL)
 if not origins:
     origins = ["*"]
 

@@ -32,7 +32,10 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int = 60 * 24  # 24 hours
 
     # --- CORS ---
+    # Comma-separated list of origins. In production Vercel sets WEB_URL via
+    # the web service's public URL; locally falls back to localhost:3000.
     allowed_origins: str = "http://localhost:3000"
+    web_url: str = ""  # Injected by Vercel when web service calls backend
 
     # --- App ---
     environment: str = "development"
