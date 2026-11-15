@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAHAAYA – People's Savings Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sahaaya: {
+              primary: '#1B5E20',
+              primaryLight: '#2E7D32',
+              primaryDark: '#0D3B11',
+              accent: '#8BC34A',
+              accentBright: '#CDDC39',
+              cream: '#FAFAF7',
+              dark: '#1A1A1A'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAF7; color: #1A1A1A; }
+    .telugu-font { font-family: 'Noto Sans Telugu', sans-serif; }
+    .card-shadow { box-shadow: 0 4px 20px -2px rgba(27, 94, 32, 0.08); }
+    .glass-nav { background: rgba(250, 250, 247, 0.92); backdrop-filter: blur(12px); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- TOP APP SWITCHER BAR -->
+  <header class="sticky top-0 z-50 bg-[#113B15] text-white px-4 py-2.5 border-b border-[#1B5E20] shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-[#8BC34A] flex items-center justify-center font-black text-lg text-[#113B15]">S</div>
+        <div>
+          <span class="font-extrabold text-sm tracking-tight">SAHAAYA PLATFORM</span>
+          <span class="hidden sm:inline-block text-[10px] text-[#8BC34A] ml-2 font-medium">Founder & CEO: Gunda Sai Jayanth</span>
+        </div>
+      </div>
+
+      <!-- VIEW SELECTOR TABS -->
+      <nav class="flex items-center gap-1.5 overflow-x-auto text-xs font-bold py-1">
+        <button onclick="switchView('landing')" id="tab-landing" class="view-tab px-3 py-1.5 rounded-lg bg-[#8BC34A] text-[#113B15] transition-all">
+          🌐 Public Website
+        </button>
+        <button onclick="switchView('dashboard')" id="tab-dashboard" class="view-tab px-3 py-1.5 rounded-lg text-white/80 hover:bg-white/10 transition-all">
+          📊 Family Dashboard
+        </button>
+        <button onclick="switchView('market')" id="tab-market" class="view-tab px-3 py-1.5 rounded-lg text-white/80 hover:bg-white/10 transition-all">
+          🛒 Marketplace
+        </button>
+        <button onclick="switchView('ai')" id="tab-ai" class="view-tab px-3 py-1.5 rounded-lg text-white/80 hover:bg-white/10 transition-all">
+          ✨ Gemini AI Assistant
+        </button>
+        <button onclick="switchView('youth')" id="tab-youth" class="view-tab px-3 py-1.5 rounded-lg text-white/80 hover:bg-white/10 transition-all">
+          🎓 Youth & Skilling
+        </button>
+        <button onclick="switchView('partner')" id="tab-partner" class="view-tab px-3 py-1.5 rounded-lg text-white/80 hover:bg-white/10 transition-all">
+          🏪 MSME Partner
+        </button>
+        <button onclick="switchView('admin')" id="tab-admin" class="view-tab px-3 py-1.5 rounded-lg text-white/80 hover:bg-white/10 transition-all">
+          🛡️ Admin & Safety
+        </button>
+        <button onclick="switchView('mobile')" id="tab-mobile" class="view-tab px-3 py-1.5 rounded-lg text-[#CDDC39] border border-[#CDDC39]/30 hover:bg-white/10 transition-all">
+          📱 Mobile App Demo
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- 1. LANDING PAGE VIEW -->
+  <section id="view-landing" class="view-section">
+    <div class="glass-nav border-b border-gray-200 sticky top-12 z-40">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-[#1B5E20] flex items-center justify-center font-black text-white">S</div>
+          <div>
+            <span class="text-xl font-black text-[#1B5E20] tracking-tight">SAHAAYA</span>
+            <span class="block text-[8px] uppercase tracking-widest text-[#8BC34A] font-bold">People's Savings Network</span>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-xs font-bold text-gray-700">
+          <a href="#features" class="hover:text-[#1B5E20]">Features</a>
+          <a href="javascript:switchView('market')" class="hover:text-[#1B5E20]">Marketplace</a>
+          <a href="javascript:switchView('youth')" class="hover:text-[#1B5E20]">Youth & Skilling</a>
+          <a href="javascript:switchView('ai')" class="hover:text-[#1B5E20]">Sahaaya AI</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="switchView('dashboard')" class="px-3.5 py-1.5 text-xs font-bold text-[#1B5E20] hover:underline">Sign In</button>
+          <button onclick="switchView('dashboard')" class="px-4 py-2 rounded-xl bg-[#1B5E20] hover:bg-[#2E7D32] text-white text-xs font-bold shadow-md shadow-[#1B5E20]/20">
+            Join Free
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-16 md:py-24 text-center px-4 max-w-5xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-green-100 text-[#1B5E20] text-xs font-bold mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#8BC34A] animate-ping"></span>
+        Supporting 50,000+ Indian Families & Students
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black text-[#1A1A1A] tracking-tight leading-tight mb-6">
+        Save More. Live Better.<br />
+        <span class="text-[#1B5E20] bg-gradient-to-r from-[#1B5E20] via-[#2E7D32] to-[#8BC34A] bg-clip-text text-transparent">
+          Grow Together.
+        </span>
+      </h1>
+      <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+        An AI-powered social-impact ecosystem for India. We help poor and middle-class families save money on kitchen staples, set compound budgets, and provide youth with free certified skills and jobs.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button onclick="switchView('dashboard')" class="px-7 py-3 rounded-xl bg-[#1B5E20] hover:bg-[#2E7D32] text-white font-extrabold text-sm shadow-xl shadow-[#1B5E20]/25">
+          Enter Family Savings Dashboard
+        </button>
+        <button onclick="switchView('market')" class="px-7 py-3 rounded-xl bg-white text-[#1B5E20] border-2 border-gray-200 font-extrabold text-sm hover:border-[#1B5E20]">
+          Shop Wholesale Groceries (Up to 35% Off)
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+        <div class="p-5 bg-white rounded-2xl border border-gray-200 shadow-sm">
+          <span class="text-[10px] font-extrabold uppercase text-gray-400">Total Savings</span>
+          <p class="text-2xl font-black text-[#1B5E20] mt-1">₹ 2.34 Cr+</p>
+          <p class="text-[10px] text-gray-500">Delivered directly to homes</p>
+        </div>
+        <div class="p-5 bg-white rounded-2xl border border-gray-200 shadow-sm">
+          <span class="text-[10px] font-extrabold uppercase text-gray-400">Households</span>
+          <p class="text-2xl font-black text-[#1B5E20] mt-1">50,000+</p>
+          <p class="text-[10px] text-gray-500">Across Telangana & AP</p>
+        </div>
+        <div class="p-5 bg-white rounded-2xl border border-gray-200 shadow-sm">
+          <span class="text-[10px] font-extrabold uppercase text-gray-400">Affordable Staples</span>
+          <p class="text-2xl font-black text-[#1B5E20] mt-1">1,200+</p>
+          <p class="text-[10px] text-gray-500">Unpolished pulses & grains</p>
+        </div>
+        <div class="p-5 bg-white rounded-2xl border border-gray-200 shadow-sm">
+          <span class="text-[10px] font-extrabold uppercase text-gray-400">Youth Upskilled</span>
+          <p class="text-2xl font-black text-[#1B5E20] mt-1">850+ Jobs</p>
+          <p class="text-[10px] text-gray-500">Free courses & placements</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FAMILY SAVINGS DASHBOARD VIEW -->
+  <section id="view-dashboard" class="view-section hidden p-6 md:p-10 max-w-7xl mx-auto w-full space-y-6">
+    <div class="bg-gradient-to-r from-[#1B5E20] to-[#2E7D32] p-8 rounded-3xl text-white shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-bold text-[#8BC34A]">🇮🇳 Hyderabad Member</span>
+        <h2 class="text-3xl font-black mt-2">Namaste, Sai Kumar! 🙏</h2>
+        <p class="text-white/80 text-xs sm:text-sm mt-1">Your family saved <strong class="text-[#8BC34A]">₹ 1,420</strong> this month using Sahaaya co-op rates.</p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="alert('Expense logged: ₹450 under Groceries')" class="px-4 py-2.5 bg-[#8BC34A] text-[#113B15] font-extrabold text-xs rounded-xl shadow">+ Add Expense</button>
+        <button onclick="switchView('market')" class="px-4 py-2.5 bg-white/10 text-white font-bold text-xs rounded-xl border border-white/20">Shop Market</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="p-5 bg-white rounded-2xl border border-gray-200">
+        <span class="text-xs text-gray-400 font-bold uppercase">Monthly Budget</span>
+        <p class="text-2xl font-black text-[#1A1A1A]">₹ 18,000</p>
+        <div class="w-full bg-gray-100 h-2 rounded-full mt-2"><div class="bg-[#1B5E20] h-full rounded-full" style="width: 42%;"></div></div>
+        <p class="text-[11px] text-gray-500 mt-1">42% utilized</p>
+      </div>
+      <div class="p-5 bg-white rounded-2xl border border-gray-200">
+        <span class="text-xs text-gray-400 font-bold uppercase">Total Spent</span>
+        <p class="text-2xl font-black text-[#1A1A1A]">₹ 7,560</p>
+        <p class="text-[11px] text-green-600 font-bold mt-2">↓ 14% below average</p>
+      </div>
+      <div class="p-5 bg-white rounded-2xl border border-gray-200">
+        <span class="text-xs text-gray-400 font-bold uppercase">All-time Savings</span>
+        <p class="text-2xl font-black text-[#1B5E20]">₹ 14,800</p>
+        <p class="text-[11px] text-[#8BC34A] font-bold mt-2">Via wholesale co-op</p>
+      </div>
+      <div class="p-5 bg-white rounded-2xl border border-gray-200">
+        <span class="text-xs text-gray-400 font-bold uppercase">Active Goals</span>
+        <p class="text-2xl font-black text-[#1A1A1A]">3 Targets</p>
+        <p class="text-[11px] text-gray-500 mt-2">School fund 65%</p>
+      </div>
+    </div>
+
+    <div class="p-6 bg-white rounded-2xl border border-gray-200 space-y-4">
+      <h3 class="font-black text-lg text-[#1A1A1A]">Family Savings Goals</h3>
+      <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-bold text-sm">Children's Annual School Fee Fund</span>
+          <span class="font-black text-sm text-[#1B5E20]">₹ 13,000 / ₹ 20,000</span>
+        </div>
+        <div class="w-full bg-gray-200 h-2 rounded-full"><div class="bg-[#1B5E20] h-full rounded-full" style="width: 65%;"></div></div>
+        <span class="text-[10px] text-gray-500 font-semibold mt-1 block">65% achieved · Target: May 2025</span>
+      </div>
+      <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-bold text-sm">Emergency Medical Reserve</span>
+          <span class="font-black text-sm text-[#1B5E20]">₹ 8,400 / ₹ 10,000</span>
+        </div>
+        <div class="w-full bg-gray-200 h-2 rounded-full"><div class="bg-[#8BC34A] h-full rounded-full" style="width: 84%;"></div></div>
+        <span class="text-[10px] text-gray-500 font-semibold mt-1 block">84% achieved · Continuous buffer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MARKETPLACE VIEW -->
+  <section id="view-market" class="view-section hidden p-6 md:p-10 max-w-7xl mx-auto w-full space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div>
+        <span class="text-[10px] font-bold uppercase text-[#1B5E20] bg-green-50 px-2 py-0.5 rounded">Direct Co-Op Sourcing</span>
+        <h2 class="text-3xl font-black mt-1">Affordable Essentials Marketplace</h2>
+        <p class="text-xs text-gray-500">Clean, unpolished staples at wholesale community rates</p>
+      </div>
+      <div class="p-3 bg-white rounded-xl border border-gray-200 flex items-center gap-3">
+        <span class="text-xs font-bold text-gray-600">Basket: <strong class="text-[#1B5E20]" id="basket-count">0 items</strong></span>
+        <button onclick="alert('Order placed in prototype mode! Total savings: ₹180')" class="px-4 py-1.5 rounded-lg bg-[#1B5E20] text-white text-xs font-bold">Checkout</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="p-5 bg-white rounded-2xl border border-gray-200 flex flex-col justify-between">
+        <div>
+          <div class="h-32 bg-amber-100 rounded-xl flex items-center justify-center font-black text-amber-800 text-xl mb-3">Toor Dal 1kg</div>
+          <span class="text-[10px] text-gray-400">Telangana Farmers Co-Op</span>
+          <h4 class="font-bold text-sm">Premium Unpolished Toor Dal</h4>
+        </div>
+        <div class="mt-4">
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="text-lg font-black text-[#1B5E20]">₹ 142</span>
+            <span class="text-xs text-gray-400 line-through">₹ 185</span>
+            <span class="text-[10px] font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded">Save 23%</span>
+          </div>
+          <button onclick="addToBasket('Toor Dal')" class="w-full py-2 bg-gray-50 hover:bg-[#1B5E20] hover:text-white text-[#1B5E20] font-bold text-xs rounded-xl border border-gray-200 transition-colors">+ Add to Basket</button>
+        </div>
+      </div>
+
+      <div class="p-5 bg-white rounded-2xl border border-gray-200 flex flex-col justify-between">
+        <div>
+          <div class="h-32 bg-emerald-100 rounded-xl flex items-center justify-center font-black text-emerald-800 text-xl mb-3">Rice 5kg</div>
+          <span class="text-[10px] text-gray-400">Godavari Direct Millers</span>
+          <h4 class="font-bold text-sm">Sona Masoori Raw Rice (Aged)</h4>
+        </div>
+        <div class="mt-4">
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="text-lg font-black text-[#1B5E20]">₹ 285</span>
+            <span class="text-xs text-gray-400 line-through">₹ 360</span>
+            <span class="text-[10px] font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded">Save 21%</span>
+          </div>
+          <button onclick="addToBasket('Sona Masoori')" class="w-full py-2 bg-gray-50 hover:bg-[#1B5E20] hover:text-white text-[#1B5E20] font-bold text-xs rounded-xl border border-gray-200 transition-colors">+ Add to Basket</button>
+        </div>
+      </div>
+
+      <div class="p-5 bg-white rounded-2xl border border-gray-200 flex flex-col justify-between">
+        <div>
+          <div class="h-32 bg-yellow-100 rounded-xl flex items-center justify-center font-black text-yellow-800 text-xl mb-3">Sunflower Oil 1L</div>
+          <span class="text-[10px] text-gray-400">Kisan Natural Oils</span>
+          <h4 class="font-bold text-sm">Cold-Pressed Sunflower Cooking Oil</h4>
+        </div>
+        <div class="mt-4">
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="text-lg font-black text-[#1B5E20]">₹ 124</span>
+            <span class="text-xs text-gray-400 line-through">₹ 165</span>
+            <span class="text-[10px] font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded">Save 25%</span>
+          </div>
+          <button onclick="addToBasket('Sunflower Oil')" class="w-full py-2 bg-gray-50 hover:bg-[#1B5E20] hover:text-white text-[#1B5E20] font-bold text-xs rounded-xl border border-gray-200 transition-colors">+ Add to Basket</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SAHAAYA GEMINI AI CHAT VIEW -->
+  <section id="view-ai" class="view-section hidden p-6 max-w-4xl mx-auto w-full h-[80vh] flex flex-col">
+    <div class="bg-white p-4 rounded-2xl border border-gray-200 flex justify-between items-center mb-4">
+      <div>
+        <h3 class="font-black text-base text-[#1A1A1A]">Sahaaya AI Savings Advisor</h3>
+        <p class="text-xs text-gray-400">Powered by Google Gemini · English, తెలుగు, हिंदी</p>
+      </div>
+      <div class="flex gap-1.5 text-xs">
+        <button onclick="setAILang('en')" id="lang-en" class="px-2.5 py-1 rounded-md bg-[#1B5E20] text-white font-bold">EN</button>
+        <button onclick="setAILang('te')" id="lang-te" class="px-2.5 py-1 rounded-md bg-gray-100 font-bold">తెలుగు</button>
+        <button onclick="setAILang('hi')" id="lang-hi" class="px-2.5 py-1 rounded-md bg-gray-100 font-bold">हिंदी</button>
+      </div>
+    </div>
+
+    <div id="ai-chat-box" class="flex-1 bg-white p-4 rounded-2xl border border-gray-200 overflow-y-auto space-y-3 text-xs sm:text-sm">
+      <div class="p-3 bg-gray-50 border border-gray-200 rounded-xl rounded-tl-none max-w-md">
+        Namaste! 🙏 I am Sahaaya AI. How can I assist your family with budgeting, cutting grocery costs, or finding free student training today?
+      </div>
+    </div>
+
+    <div class="flex gap-2 py-2 overflow-x-auto text-[11px]">
+      <button onclick="sendAIPrompt('How can I save ₹1,500 on groceries this month?')" class="px-3 py-1 bg-white border border-gray-200 rounded-full whitespace-nowrap hover:border-[#1B5E20]">
+        💡 Cut ₹1,500 grocery costs
+      </button>
+      <button onclick="sendAIPrompt('Tell me about free Tally Prime course')" class="px-3 py-1 bg-white border border-gray-200 rounded-full whitespace-nowrap hover:border-[#1B5E20]">
+        🎓 Free Tally course
+      </button>
+      <button onclick="sendAIPrompt('How to build an emergency fund on ₹20,000 salary?')" class="px-3 py-1 bg-white border border-gray-200 rounded-full whitespace-nowrap hover:border-[#1B5E20]">
+        🛡️ Emergency fund guide
+      </button>
+    </div>
+
+    <div class="flex gap-2">
+      <input id="ai-input" type="text" placeholder="Ask your question here..." class="flex-1 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#1B5E20]" onkeypress="if(event.key==='Enter') sendAICustom()" />
+      <button onclick="sendAICustom()" class="px-5 py-2.5 bg-[#1B5E20] text-white font-bold text-xs rounded-xl">Send</button>
+    </div>
+  </section>
+
+  <!-- 5. YOUTH DEVELOPMENT VIEW -->
+  <section id="view-youth" class="view-section hidden p-6 md:p-10 max-w-7xl mx-auto w-full space-y-6">
+    <div class="bg-[#113B15] p-8 rounded-3xl text-white">
+      <span class="text-xs text-[#8BC34A] font-bold uppercase tracking-wider">Free Vocational Skilling</span>
+      <h2 class="text-3xl font-black mt-1">Youth Development & Employment Hub</h2>
+      <p class="text-white/80 text-xs sm:text-sm mt-1">Certified career skills, internships, and verified government scholarship grants.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 bg-white rounded-2xl border border-gray-200 flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">100% Free Certification</span>
+          <h4 class="font-black text-base mt-2">Tally Prime & GST Accounting</h4>
+          <p class="text-xs text-gray-500 mt-1">30 Hours · Beginner · High MSME Hiring Demand</p>
+        </div>
+        <button onclick="alert('Enrolled in Tally Prime! Class link dispatched.')" class="mt-4 w-full py-2 bg-[#1B5E20] text-white font-bold text-xs rounded-xl">Enroll for Free</button>
+      </div>
+
+      <div class="p-6 bg-white rounded-2xl border border-gray-200 flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Tech Career Track</span>
+          <h4 class="font-black text-base mt-2">Full-Stack Web Development</h4>
+          <p class="text-xs text-gray-500 mt-1">60 Hours · HTML, CSS, React, Node.js</p>
+        </div>
+        <button onclick="alert('Enrolled in Web Dev! Access granted.')" class="mt-4 w-full py-2 bg-[#1B5E20] text-white font-bold text-xs rounded-xl">Enroll for Free</button>
+      </div>
+
+      <div class="p-6 bg-white rounded-2xl border border-gray-200 flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Communication Skills</span>
+          <h4 class="font-black text-base mt-2">Spoken English & Job Interviews</h4>
+          <p class="text-xs text-gray-500 mt-1">20 Hours · Confidence Building</p>
+        </div>
+        <button onclick="alert('Enrolled in Spoken English! Daily audio module ready.')" class="mt-4 w-full py-2 bg-[#1B5E20] text-white font-bold text-xs rounded-xl">Enroll for Free</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PARTNER VIEW -->
+  <section id="view-partner" class="view-section hidden p-6 md:p-10 max-w-7xl mx-auto w-full space-y-6">
+    <div class="p-6 bg-white rounded-2xl border border-gray-200 flex justify-between items-center">
+      <div>
+        <h3 class="font-black text-xl text-[#1A1A1A]">Godavari Direct Millers Co-Operative</h3>
+        <span class="text-xs text-green-700 font-bold bg-green-50 px-2 py-0.5 rounded">Verified MSME Seller</span>
+      </div>
+      <button onclick="alert('New product modal ready.')" class="px-4 py-2 bg-[#1B5E20] text-white font-bold text-xs rounded-xl">+ Add New Essential</button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="p-5 bg-white rounded-2xl border border-gray-200"><span class="text-xs text-gray-400 font-bold">Monthly Orders</span><p class="text-2xl font-black text-[#1B5E20]">642 Units</p></div>
+      <div class="p-5 bg-white rounded-2xl border border-gray-200"><span class="text-xs text-gray-400 font-bold">Settled Revenue</span><p class="text-2xl font-black text-[#1A1A1A]">₹ 1,84,300</p></div>
+      <div class="p-5 bg-white rounded-2xl border border-gray-200"><span class="text-xs text-gray-400 font-bold">Community Rating</span><p class="text-2xl font-black text-amber-500">4.9 ★</p></div>
+    </div>
+  </section>
+
+  <!-- 7. ADMIN & SAFETY VIEW -->
+  <section id="view-admin" class="view-section hidden p-6 md:p-10 max-w-7xl mx-auto w-full space-y-6">
+    <div class="bg-[#113B15] p-6 rounded-2xl text-white">
+      <h3 class="font-black text-xl">Governance & Safety Console</h3>
+      <p class="text-xs text-white/80">Monitor KYC verification and ensure zero price inflation.</p>
+    </div>
+    <div class="p-5 bg-white rounded-2xl border border-gray-200 space-y-3">
+      <h4 class="font-bold text-sm">Pending Seller Verification</h4>
+      <div class="p-4 bg-gray-50 rounded-xl flex justify-between items-center text-xs">
+        <div>
+          <strong>Warangal Organic Farmers Federation</strong>
+          <p class="text-gray-500">GST: 36AAACW1234F1Z5 · Warangal, TS</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="this.parentElement.innerHTML='<span class=\'text-green-700 font-bold\'>✓ Approved</span>'" class="px-3 py-1 bg-[#1B5E20] text-white font-bold rounded">Approve</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. MOBILE APP SIMULATOR VIEW -->
+  <section id="view-mobile" class="view-section hidden py-10 flex justify-center">
+    <div class="w-[360px] h-[700px] bg-white rounded-[40px] border-[10px] border-gray-900 shadow-2xl flex flex-col overflow-hidden relative">
+      <div class="w-32 h-4 bg-gray-900 mx-auto rounded-b-xl z-30"></div>
+      <div class="bg-[#1B5E20] px-4 pt-3 pb-3 text-white">
+        <span class="text-[9px] uppercase font-bold text-[#8BC34A]">SAHAAYA MOBILE</span>
+        <h4 class="font-black text-sm">Namaste, Sai Kumar! 🙏</h4>
+        <span class="text-[10px] text-white/80">₹ 14,800 saved all-time</span>
+      </div>
+      <div class="flex-1 p-3 overflow-y-auto space-y-3 text-xs bg-[#FAFAF7]">
+        <div class="p-3 bg-white rounded-xl border border-gray-200 shadow-sm">
+          <span class="text-[9px] uppercase font-bold text-gray-400">Monthly Budget</span>
+          <p class="font-black text-base text-[#1A1A1A]">₹ 18,000</p>
+          <div class="w-full bg-gray-100 h-1.5 rounded-full mt-1"><div class="bg-[#1B5E20] h-full" style="width: 42%;"></div></div>
+        </div>
+        <div class="p-3 bg-white rounded-xl border border-gray-200">
+          <span class="font-bold text-xs block mb-1">Affordable Essentials</span>
+          <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+            <span>Toor Dal 1kg</span>
+            <span class="font-black text-[#1B5E20]">₹ 142</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5">
+            <span>Rice 5kg</span>
+            <span class="font-black text-[#1B5E20]">₹ 285</span>
+          </div>
+        </div>
+        <div class="p-3 bg-[#113B15] text-white rounded-xl">
+          <span class="text-[9px] text-[#8BC34A] font-bold">SAHAAYA AI TIP</span>
+          <p class="text-[11px] mt-0.5">Switching to 5kg pulse packs saves ₹340 this month!</p>
+        </div>
+      </div>
+      <div class="h-14 bg-white border-t border-gray-200 flex justify-around items-center text-[9px] font-bold text-gray-400">
+        <span class="text-[#1B5E20]">Savings</span>
+        <span>Market</span>
+        <span class="text-[#8BC34A]">AI Chat</span>
+        <span>Youth</span>
+        <span>Profile</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+    let basketTotal = 0;
+    let currentAILang = 'en';
+
+    function switchView(viewId) {
+      document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
+      document.querySelectorAll('.view-tab').forEach(t => {
+        t.classList.remove('bg-[#8BC34A]', 'text-[#113B15]');
+        t.classList.add('text-white/80');
+      });
+
+      const activeSection = document.getElementById('view-' + viewId);
+      const activeTab = document.getElementById('tab-' + viewId);
+      if (activeSection) activeSection.classList.remove('hidden');
+      if (activeTab) {
+        activeTab.classList.add('bg-[#8BC34A]', 'text-[#113B15]');
+        activeTab.classList.remove('text-white/80');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function addToBasket(name) {
+      basketTotal += 1;
+      document.getElementById('basket-count').innerText = basketTotal + ' items';
+      alert(name + ' added to basket! Direct community relief applied.');
+    }
+
+    function setAILang(lang) {
+      currentAILang = lang;
+      ['en', 'te', 'hi'].forEach(l => {
+        const btn = document.getElementById('lang-' + l);
+        if (btn) {
+          btn.className = (l === lang) ? 'px-2.5 py-1 rounded-md bg-[#1B5E20] text-white font-bold' : 'px-2.5 py-1 rounded-md bg-gray-100 font-bold';
+        }
+      });
+      const box = document.getElementById('ai-chat-box');
+      if (lang === 'te') {
+        box.innerHTML += `<div class="p-3 bg-gray-50 border border-gray-200 rounded-xl rounded-tl-none max-w-md telugu-font">నమస్కారం! 🙏 సహయ AI కి స్వాగతం. మీ కుటుంబ ఖర్చులు తగ్గించడానికి లేదా ఉచిత కోర్సులు నేర్చుకోవడానికి మీకు ఎలా సహాయం చేయగలను?</div>`;
+      } else if (lang === 'hi') {
+        box.innerHTML += `<div class="p-3 bg-gray-50 border border-gray-200 rounded-xl rounded-tl-none max-w-md">नमस्ते! 🙏 सहाय AI में आपका स्वागत है। आज मैं आपके परिवार की बचत और युवाओं के करियर में कैसे मदद कर सकता हूँ?</div>`;
+      } else {
+        box.innerHTML += `<div class="p-3 bg-gray-50 border border-gray-200 rounded-xl rounded-tl-none max-w-md">Namaste! Switched to English mode. How can I help you today?</div>`;
+      }
+    }
+
+    function sendAIPrompt(text) {
+      const box = document.getElementById('ai-chat-box');
+      box.innerHTML += `<div class="p-3 bg-[#1B5E20] text-white rounded-xl rounded-tr-none ml-auto max-w-md">${text}</div>`;
+      setTimeout(() => {
+        box.innerHTML += `<div class="p-3 bg-gray-50 border border-gray-200 rounded-xl rounded-tl-none max-w-md">
+          <strong>Sahaaya AI Advisor:</strong><br />
+          Great question! By switching from open-market retail to Sahaaya verified MSME staples (rice, toor dal, sunflower oil), you immediately eliminate 22-35% middleman margin. Setting a 50/30/20 budget will save an extra ₹1,500 every month!
+        </div>`;
+        box.scrollTop = box.scrollHeight;
+      }, 500);
+    }
+
+    function sendAICustom() {
+      const inp = document.getElementById('ai-input');
+      const val = inp.value.trim();
+      if (!val) return;
+      inp.value = '';
+      sendAIPrompt(val);
+    }
+  </script>
+
+</body>
+</html>
